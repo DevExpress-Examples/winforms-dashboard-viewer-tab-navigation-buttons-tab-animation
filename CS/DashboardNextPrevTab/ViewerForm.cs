@@ -20,6 +20,7 @@ namespace DashboardNextPrevTab
 
             dashboardViewer.CustomizeDashboardTitle += DashboardViewerCustomizeDashboardTitle;
             dashboardViewer.SelectedTabPageChanged += DashboardViewerSelectedTabPageChanged;
+            dashboardViewer.UpdateDashboardTitle();
 
             SetUpTimer();
         }
