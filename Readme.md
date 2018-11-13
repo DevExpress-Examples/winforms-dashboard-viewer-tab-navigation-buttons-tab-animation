@@ -2,4 +2,4 @@
 
 This example illustrates methods and events used to manage selected tabs.
 
-![](~/images/Screenshot.png)
+![](https://github.com/DevExpress-Examples/winforms-dashboard-viewer-tab-navigation-buttons-tab-animation/blob/18.2.3%2B/images/Screenshot.png)
