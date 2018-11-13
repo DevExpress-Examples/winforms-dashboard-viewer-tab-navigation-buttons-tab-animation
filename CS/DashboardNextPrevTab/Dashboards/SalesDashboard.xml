@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Sales Dashboard" />
+  <DataSources>
+    <ExtractFileDataSource ComponentName="dashboardExtractDataSource1" Name="Sales Data">
+      <FileName>Data\SalesData.dat</FileName>
+      <ExtractSourceDataMember>Categories</ExtractSourceDataMember>
+      <ExtractSourceFilter></ExtractSourceFilter>
+      <NumberOfRows>-1</NumberOfRows>
+      <Parameters />
+      <SavedSchema>
+        <Column>
+          <Name>CategoryName</Name>
+          <Type>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>ProductName</Name>
+          <Type>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>UnitPrice</Name>
+          <Type>System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>Quantity</Name>
+          <Type>System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>OrderDate</Name>
+          <Type>System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>ShipRegion</Name>
+          <Type>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>ShipCity</Name>
+          <Type>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>ShipCountry</Name>
+          <Type>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>CompanyName</Name>
+          <Type>System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+        <Column>
+          <Name>UnitsOnOrder</Name>
+          <Type>System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Type>
+        </Column>
+      </SavedSchema>
+    </ExtractFileDataSource>
+  </DataSources>
+  <Items>
+    <TabContainer ComponentName="tabContainerDashboardItem1" Name="Tab Container 1">
+      <Pages>
+        <Page ComponentName="dashboardTabPage1" Name="Product details" />
+        <Page ComponentName="dashboardTabPage2" Name="Orders by date" />
+        <Page ComponentName="dashboardTabPage3" Name="Sales by country" />
+        <Page ComponentName="dashboardTabPage4" Name="Sales by company" />
+      </Pages>
+    </TabContainer>
+    <Pie ComponentName="pieDashboardItem1" Name="Orders by year" ParentContainer="dashboardTabPage1" DataSource="dashboardExtractDataSource1">
+      <DataItems>
+        <Dimension DataMember="CategoryName" DefaultId="DataItem0" />
+        <Measure DataMember="UnitsOnOrder" DefaultId="DataItem1" />
+        <Dimension DataMember="OrderDate" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pie>
+    <Chart ComponentName="chartDashboardItem2" Name="Orders by date" ParentContainer="dashboardTabPage2" DataSource="dashboardExtractDataSource1">
+      <ColoringOptions UseGlobalColors="false" />
+      <DataItems>
+        <Dimension DataMember="OrderDate" DateTimeGroupInterval="MonthYear" ColoringMode="Hue" DefaultId="DataItem0" />
+        <Measure DataMember="UnitsOnOrder" SummaryType="Average" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+      <ChartLegend Visible="false" />
+    </Chart>
+    <Treemap ComponentName="treemapDashboardItem1" Name="Product orders" ShowCaption="false" ParentContainer="dashboardTabPage1" DataSource="dashboardExtractDataSource1" GroupsLabelContentType="ArgumentAndValue">
+      <DataItems>
+        <Dimension DataMember="ProductName" DefaultId="DataItem0" />
+        <Measure DataMember="UnitsOnOrder" DefaultId="DataItem1" />
+        <Dimension DataMember="CategoryName" GroupChildValues="true" DefaultId="DataItem2" />
+      </DataItems>
+      <Values>
+        <Value DefaultId="DataItem1" />
+      </Values>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+    </Treemap>
+    <ScatterChart ComponentName="scatterChartDashboardItem1" Name="Orders by country" ShowCaption="false" ParentContainer="dashboardTabPage3" DataSource="dashboardExtractDataSource1">
+      <ColoringOptions UseGlobalColors="false" />
+      <DataItems>
+        <Measure DataMember="UnitsOnOrder" DefaultId="DataItem0" />
+        <Measure DataMember="UnitPrice" DefaultId="DataItem1" />
+        <Measure DataMember="Quantity" DefaultId="DataItem2" />
+        <Dimension DataMember="ShipCountry" ColoringMode="Hue" DefaultId="DataItem3" />
+      </DataItems>
+      <ChartLegend Visible="false" />
+      <PointLabelOptions Position="Inside" Visible="true" Content="ArgumentAndWeight" />
+      <MeasureX DefaultId="DataItem1" />
+      <MeasureY DefaultId="DataItem2" />
+      <MeasureWeight DefaultId="DataItem0" />
+      <Dimensions>
+        <Dimension DefaultId="DataItem3" />
+      </Dimensions>
+    </ScatterChart>
+    <ChoroplethMap ComponentName="choroplethMapDashboardItem1" Name="Orders by country" ParentContainer="dashboardTabPage3" DataSource="dashboardExtractDataSource1" AttributeName="NAME">
+      <DataItems>
+        <Dimension DataMember="ShipCountry" DefaultId="DataItem0" />
+        <Measure DataMember="UnitsOnOrder" DefaultId="DataItem1" />
+      </DataItems>
+      <ViewArea TopLatitude="84.500659634129534" BottomLatitude="-63.983986228391011" CenterPointLatitude="40.977964666905727" CenterPointLongitude="2.8566444763248722" CreateViewerPaddings="false" />
+      <MapLegend />
+      <WeightedLegend />
+      <AttributeDimension DefaultId="DataItem0" />
+      <Maps>
+        <ValueMap>
+          <Value DefaultId="DataItem1" />
+          <UniformScale />
+        </ValueMap>
+      </Maps>
+    </ChoroplethMap>
+    <Card ComponentName="cardDashboardItem1" Name="Order count by city" ParentContainer="dashboardTabPage3" DataSource="dashboardExtractDataSource1">
+      <DataItems>
+        <Dimension DataMember="ShipCountry" TopNEnabled="true" TopNCount="4" TopNMeasure="DataItem1" DefaultId="DataItem0" />
+        <Dimension DataMember="ShipCity" TopNEnabled="true" TopNMeasure="DataItem1" DefaultId="DataItem2" />
+        <Measure DataMember="Quantity" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem1" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="270" MaxWidth="270" Type="Centered">
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <BottomSubValue1 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <BottomSubValue2 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <Pie ComponentName="pieDashboardItem2" Name="Pies 1" ShowCaption="false" ParentContainer="dashboardTabPage4" DataSource="dashboardExtractDataSource1">
+      <ColoringOptions UseGlobalColors="false" />
+      <DataItems>
+        <Measure DataMember="Quantity" DefaultId="DataItem0" />
+        <Dimension DataMember="CompanyName" TopNEnabled="true" TopNCount="20" TopNMeasure="DataItem0" DefaultId="DataItem1" />
+        <Dimension DataMember="OrderDate" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Card ComponentName="cardDashboardItem2" Name="Top 5 Companies" ParentContainer="dashboardTabPage4" DataSource="dashboardExtractDataSource1" ContentArrangementMode="FixedColumnCount" ContentLineCount="1">
+      <DataItems>
+        <Dimension DataMember="CompanyName" TopNEnabled="true" TopNMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="Quantity" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem1" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="false" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutTabContainer DashboardItem="tabContainerDashboardItem1" Weight="100">
+        <LayoutTabPage DashboardItem="dashboardTabPage1" Weight="100">
+          <LayoutItem DashboardItem="pieDashboardItem1" Weight="28.87372013651877" />
+          <LayoutItem DashboardItem="treemapDashboardItem1" Weight="71.12627986348123" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage2" Weight="100">
+          <LayoutItem DashboardItem="chartDashboardItem2" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage DashboardItem="dashboardTabPage3" Weight="100">
+          <LayoutItem DashboardItem="scatterChartDashboardItem1" Weight="57.201365187713307" />
+          <LayoutGroup Orientation="Vertical" Weight="42.798634812286693">
+            <LayoutItem DashboardItem="choroplethMapDashboardItem1" Weight="53.024453024453024" />
+            <LayoutItem DashboardItem="cardDashboardItem1" Weight="46.975546975546976" />
+          </LayoutGroup>
+        </LayoutTabPage>
+        <LayoutTabPage DashboardItem="dashboardTabPage4" Weight="100">
+          <LayoutItem DashboardItem="pieDashboardItem2" Weight="75.7679180887372" />
+          <LayoutItem DashboardItem="cardDashboardItem2" Weight="24.2320819112628" />
+        </LayoutTabPage>
+      </LayoutTabContainer>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
