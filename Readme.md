@@ -13,3 +13,13 @@ The **Slideshow** button starts the timer. Each timer tick forces the [transitio
 The **Show Tab Headers** button toggles the [TabContainerDashboardItem.ShowCaption](https://docs.devexpress.com/Dashboard/DevExpress.DashboardCommon.DashboardItem.ShowCaption) value to hide or show tab captions. 
 
 ![](https://github.com/DevExpress-Examples/winforms-dashboard-viewer-tab-navigation-buttons-tab-animation/blob/18.2.3%2B/images/Screenshot.png)
+
+## Documentation
+
+- [Title and Item Captions](https://docs.devexpress.com/Dashboard/401132/winforms-dashboard/winforms-viewer/title-and-item-captions)
+- [Dashboard Layout](https://docs.devexpress.com/Dashboard/15617)
+
+## More Examples 
+
+* [How to: Add a Command Button to the Dashboard Title and Item Caption](https://github.com/DevExpress-Examples/winforms-dashboard-custom-command-buttons)
+* [How to Customize the Dashboard Title and Dashboard Item Captions](https://github.com/DevExpress-Examples/winforms-dashboard-how-to-customize-the-dashboard-title-and-dashboard-item-captions-t630210)
