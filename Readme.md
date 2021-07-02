@@ -30,3 +30,4 @@ The **Show Tab Headers** button toggles the [TabContainerDashboardItem.ShowCapti
 
 * [How to: Add a Command Button to the Dashboard Title and Item Caption](https://github.com/DevExpress-Examples/winforms-dashboard-custom-command-buttons)
 * [How to Customize the Dashboard Title and Dashboard Item Captions](https://github.com/DevExpress-Examples/winforms-dashboard-how-to-customize-the-dashboard-title-and-dashboard-item-captions-t630210)
+* [Dashboard for Web Forms - How to navigate between tabs using custom tab header buttons or set up a slide show](https://github.com/DevExpress-Examples/Web-Dashboard-Slideshow-TabContainer-Navigation)
