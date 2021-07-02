@@ -1,3 +1,10 @@
+
+<!-- default file list -->
+*Files to look at*:
+
+* [ViewerForm.cs](./CS/DashboardNextPrevTab/ViewerForm.cs)
+<!-- default file list end -->
+
 # Dashboard for WinForms - How to navigate tabs using custom tab header buttons or set up a slide show
 
 This example illustrates methods and events used to manage the selected tabs.
